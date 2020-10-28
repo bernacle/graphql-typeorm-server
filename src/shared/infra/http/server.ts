@@ -1,10 +1,19 @@
-import express from 'express';
-import cors from 'cors';
+import 'reflect-metadata';
+import '@shared/infra/typeorm';
+import '@shared/container';
+import { ApolloServer } from 'apollo-server';
+import { PostResolver } from '@modules/posts/resolvers/PostResolver';
+import { buildSchema } from 'type-graphql';
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+async function main() {
+  const schema = await buildSchema({
+    resolvers: [PostResolver], // add this
+  });
 
-app.listen(3333, () => {
-  console.log('Server started on server 3333');
-});
+  const server = new ApolloServer({ schema });
+
+  await server.listen(4000);
+  console.log('Server has started!');
+}
+
+main();
