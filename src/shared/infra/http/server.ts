@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import '@shared/infra/typeorm';
-import '@shared/container';
 import { ApolloServer } from 'apollo-server';
 import { PostResolver } from '@modules/posts/resolvers/PostResolver';
 import { buildSchema } from 'type-graphql';

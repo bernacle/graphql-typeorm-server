@@ -4,13 +4,14 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  BaseEntity,
 } from 'typeorm';
 
 import { ObjectType, Field, ID } from 'type-graphql';
 
 @Entity('posts')
 @ObjectType()
-class Post {
+class Post extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
